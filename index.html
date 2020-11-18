@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang>
+<html class="theme-next muse use-motion" lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -79,13 +79,16 @@
 
 
 
+<meta name="description" content="记录点滴生活，让繁忙的工作更有意义。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Lam_TT的博客">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="Lam_TT的博客">
-<meta property="og:locale" content="default">
+<meta property="og:description" content="记录点滴生活，让繁忙的工作更有意义。">
+<meta property="og:locale" content="zh">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lam_TT的博客">
+<meta name="twitter:description" content="记录点滴生活，让繁忙的工作更有意义。">
 
 
 
@@ -133,7 +136,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh">
 
   
   
@@ -229,6 +232,162 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/26/H5微信支付记录整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lam_TT">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lam_TT的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/26/H5微信支付记录整理/" itemprop="url">H5微信支付记录整理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-26T17:13:54+08:00">
+                2020-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="H5微信支付记录整理"><a href="#H5微信支付记录整理" class="headerlink" title="H5微信支付记录整理"></a>H5微信支付记录整理</h2><p>我主要是做iOS开发的，在完成app开发任务的之余也要负责公司部分项目前端开发。</p>
+<p>对于H5的微信支付，其实做了3次了，虽然很简单，但是开发时间间隔有点久了，总是记不住流程和配置，每次都花了大量调试时间。对此做一下记录整理。（如记录整理有问题，请各位朋友及时指出！）</p>
+<p>首先，支付分为：</p>
+<ol>
+<li><p>微信应用内：jsApi</p>
+</li>
+<li><p>微信应用外：m_webUrl直接调用支付</p>
+</li>
+</ol>
+<hr>
+<h4 id="微信应用内-流程如下："><a href="#微信应用内-流程如下：" class="headerlink" title="微信应用内   (流程如下：)"></a>微信应用内   (流程如下：)</h4><ul>
+<li>配置步骤</li>
+</ul>
+<ol>
+<li>公众平台申请账号：<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">https://mp.weixin.qq.com/</a> 完善相关资料，。</li>
+<li>微信商户平台账号：<a href="https://pay.weixin.qq.com/index.php/core/home/login?return_url=%2F" target="_blank" rel="noopener">https://pay.weixin.qq.com/index.php/core/home/login?return_url=%2F</a> 完善相关资料，并且申请开通各个功能，比如：JSApi支付，H5支付等。</li>
+<li>公众号和商户平台绑定。</li>
+<li>分别在公众平台和商户平台进行域名绑定：JSApi、H5、业务域名、授权域名。（注意：域名有个数限制，授权域名只能有2个域名）。</li>
+</ol>
+<ul>
+<li>开发步骤（<a href="https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_3）" target="_blank" rel="noopener">https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_3）</a></li>
+</ul>
+<ol>
+<li>集成JSSDK参考：<a href="https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html#1" target="_blank" rel="noopener">https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html#1</a></li>
+<li>静默授权获取code，code大概是5分钟过期，使用后也过期。具体参考：<a href="https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html</a> （注意回调地址要encode）</li>
+<li>获取wxOpenId，使用code从后台向wx授权获取wxopenId。</li>
+<li>完善当前页面支付的信息，点击支付。</li>
+<li>使用wxOpenId向微信下单，同样是后台去下单，后台拿到对应数据返回至前端。</li>
+<li>调起支付，方法如下：window.WeixinJSBridge.invoke。具体参考：<a href="https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_7&amp;index=6" target="_blank" rel="noopener">https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_7&amp;index=6</a></li>
+</ol>
+<hr>
+<h4 id="微信应用外"><a href="#微信应用外" class="headerlink" title="微信应用外"></a>微信应用外</h4><ol>
+<li>应用外比较简单，只需要配置好 商户平台的域名权限。前端支付使用后台返回的m_webUrl直接调用即可。</li>
+<li>如果是iOSApp内的浏览器调用支付的话，微信支付完成后可能无法直接返回App，需要做一些处理。比如：调用微信支付时：将redirect_url 替换成App对应的URL Schemes ，当然这个Schemes需要使用在微信的公众平台和商户平台配置的域名。比如：online.xxxxx.com.  否则微信也无法正常返回至对应App。</li>
+</ol>
+<hr>
+<p>备注：开发过程中，只能在配置权限域名下进行调试。所以调试过程比较麻烦，推荐一个调试工具，微信内：<a href="http://debugx5.qq.com/" target="_blank" rel="noopener">http://debugx5.qq.com/</a>  直接打开即可，注意不能用https，并且只能android设备使用。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/26/个人介绍/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -300,136 +459,7 @@
       
         
           
-            <p>####<br>大家好，我叫李田，93年的大叔了。<br>毕业学校：成都东软学院<br>职业：ios开发工程师<br>公司：易极天成<br>座右铭：励志做一个合格的程序员。</p>
-<p>####</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/26/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lam_TT">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lam_TT的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/26/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-26T15:41:48+08:00">
-                2019-03-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <p>大家好，我叫李田，93年的大叔了。<br>毕业学校：成都东软学院<br>目前职业：ios开发工程师<br>就职公司：易极天成科技有限公司<br>座右铭：励志做一个合格的程序员。</p>
 
           
         
@@ -501,7 +531,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">Lam_TT</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">记录点滴生活，让繁忙的工作更有意义。</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -552,7 +582,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
